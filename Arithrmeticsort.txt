@@ -1,0 +1,107 @@
+public class Am {
+    
+    static int k;
+    static int l;
+    static int m;
+    public static void main(String[] args) {
+        int arr[]={20,10,32,49,35,17,1,6,7,11,45};
+        int max=arr.length;
+
+        largest(arr,max);
+        smallest(arr,max);
+        Amsort(max-1,arr,max);
+        
+    
+for(int i=0;i<max;i++){   
+    System.out.println(arr[i]);
+}
+    }
+
+        
+    public static void largest(int arr[],int max)
+    {
+        int large =arr[0];
+        for(int i=0;i<arr.length;i++)
+        {if(large<arr[i])
+        {
+            large=arr[i];
+            k=i;
+        }
+        }int temp;
+        temp=arr[max-1];
+        arr[max-1]=arr[k];
+        arr[k]=temp;
+    }
+    public static void smallest(int arr[],int max)
+    {
+        int small=arr[0];
+        for(int i=0;i<arr.length;i++)
+        {
+            if(small>arr[i])
+            {
+                small=arr[i];
+                l=i;
+            }
+    }int temp;
+    temp=arr[0];
+    arr[0]=arr[l];
+    arr[l]=temp;
+        }
+    public static void Amsort(int index,int arr[],int max)
+    {
+        if(index==1)
+        {
+            sort(1, arr,max);
+            return;
+        }
+        else if(index==max-1)
+        {
+            Amsort(index-1,arr,max);
+            return;
+        }
+        else 
+        {
+            Amsort(index-1,arr,max);
+            sort(index,arr,max);
+            return;
+        }
+    }
+    public static void sort(int index,int arr[],int max)
+    {
+        int a=arr[max-1]-arr[0];
+        int b=max-1;
+        int c=a/b;
+        for(int i=1;i<max;i++)
+        {
+            int am=arr[0]+i*c;
+            int small=arr[index];
+            for(int j=index;j<=max-1;j++)
+            {   
+                if(arr[j]>=arr[index-1] && arr[j]<am)
+                {
+                    if(small>=arr[j])
+                    {
+                        small=arr[j];
+                        m=j;
+                    }
+                    
+                }
+                else if(arr[index]>=(max-1)*c+arr[0]&&arr[index]<arr[max-1])
+                {    
+                    if(small>=arr[j])
+                    {
+                        small=arr[j];
+                        m=j;
+                    }
+                }
+            }
+            if(m!=0){
+            int temp;
+            temp=arr[index];
+            arr[index]=arr[m];
+            arr[m]=temp;
+            }
+            
+           }
+    }
+}
